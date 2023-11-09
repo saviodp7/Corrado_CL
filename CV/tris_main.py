@@ -4,8 +4,7 @@ import time
 import tkinter as tk
 import keyboard
 
-from grid import find_game_grid, print_board
-from symbols import find_color
+from grid import find_game_grid, print_board, find_color
 from setting import X_SYM, O_SYM
 from MinMaxSolver import MinMaxSolver
 from LetterRecognition import LetterRecognition
@@ -84,7 +83,7 @@ while True:
         if accuracy_count > 10:
             print_board(config)
             solver.set_config(config)
-            print("La mossa ottima è: ", solver.findBestMove())
+            print("La mossa ottima è: ", solver.find_best_move())
 
         next_time += (1/freq_samp)
 
