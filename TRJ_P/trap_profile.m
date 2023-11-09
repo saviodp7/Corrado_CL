@@ -7,7 +7,7 @@ function [s, s_dot, s_dotdot]=trap_profile(t_i ,t_f, f_s, p_i, p_f, t_trj, descr
         p_f = 0.0
         t_trj = 0.0
         descr = "rect";
-        delta_via_point = 0.1;
+        delta_via_point = 0.6;
     end
 
 s_i = 0;

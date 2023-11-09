@@ -59,7 +59,7 @@ void loop() {
       driver.setPWM(3, 0, pwm3);
       driver.setPWM(4, 0, pwm4);
       driver.setPWM(5, 0, pwm5);
-      delay(50);
+      delay(25);
     }
   }
 }
