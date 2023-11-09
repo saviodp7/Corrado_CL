@@ -5,7 +5,7 @@ roi_width = 280  # Larghezza
 roi_height = 250  # Altezza
 
 # SYMBOLS
-X_SYM = 2
-O_SYM = 1
+X_SYM = 1
+O_SYM = -1
 
 

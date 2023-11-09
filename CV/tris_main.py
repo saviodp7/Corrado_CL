@@ -32,6 +32,7 @@ next_time = time.time()
 freq_samp = 2
 accuracy_count = 0
 prec_config = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+solver = MinMaxSolver()
 
 while True:
     now = time.time()
@@ -78,13 +79,12 @@ while True:
         else:
             accuracy_count = 0
         prec_config = config
-        print_board(config)
 
         # Rileva la pressione sul fronte di discesa del tasto "m"
-        if keyboard.is_pressed('m') and accuracy_count > 10:
-            print("Sto cercando la mossa ...")
-            solver = MinMaxSolver(config)
-            print(solver.findBestMove())
+        if accuracy_count > 10:
+            print_board(config)
+            solver.set_config(config)
+            print("La mossa ottima è: ", solver.findBestMove())
 
         next_time += (1/freq_samp)
 
