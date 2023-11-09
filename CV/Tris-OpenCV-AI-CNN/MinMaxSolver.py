@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class MinMaxSolver:
     def __init__(self, config):
         self.config = list(config)

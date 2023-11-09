@@ -2,7 +2,6 @@ import numpy as np
 from setting import *
 import cv2
 
-
 def find_game_grid(frame, threshold, kernel_dim):
     """Riconoscimento della griglia di gioco e restituisce i corners ordinati"""
 
@@ -64,3 +63,18 @@ def find_corners(contours, hiers):
             brec_bot_right = (brec_x + brec_width, brec_y + brec_height)
             corners.append((brec_top_left, brec_bot_right))
     return corners
+
+
+#This function is used to draw the board's current state every time the user turn arrives.
+def print_board(config):
+    print("Griglia di gioco:")
+    for i in range(0, 9):
+        if i > 0 and i % 3 == 0:
+            print("\n")
+        if config[i] == 0:
+            print("- ", end=" ")
+        if config[i] == O_SYM:
+            print("O ", end=" ")
+        if config[i] == X_SYM:
+            print("X ", end=" ")
+    print("\n")
