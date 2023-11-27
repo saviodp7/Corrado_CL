@@ -4,23 +4,49 @@
 
 Adafruit_PWMServoDriver driver = Adafruit_PWMServoDriver();
 
-#define SERVOMIN0  120
-#define SERVOMAX0  500
-#define SERVOMIN1  130
-#define SERVOMAX1  490
-#define SERVOMIN2  115
-#define SERVOMAX2  485
+#define N_POINTS  300
+#define N_JOINTS  6
+#define F_POSITIONS 50
+#define SERVOMIN  120
+#define SERVOMAX  500
 #define SERVO_FREQ 50
-#define J_0_OFFSET 90
-#define J_1_OFFSET 100
-#define J_2_OFFSET 60
-#define J_3_OFFSET 110
-#define J_4_OFFSET 50
-#define J_5_OFFSET 120
+#define J_0_OFFSET 0
+#define J_1_OFFSET -5
+#define J_2_OFFSET 0
+#define J_3_OFFSET -80
+#define J_4_OFFSET -30
+#define J_5_OFFSET 27
 
-int8_t  angolo0, angolo1, angolo2, angolo3, angolo4, angolo5;
-float pwm0, pwm1, pwm2, pwm3, pwm4, pwm5;
+float  theta[N_JOINTS];
+float pwm[N_JOINTS];
+const float offset[N_JOINTS] = {J_0_OFFSET, J_1_OFFSET, J_2_OFFSET, J_3_OFFSET, J_4_OFFSET, J_5_OFFSET};
+const float home_position[N_JOINTS] = {0, 0, 0, 0, 0, 0};
 String buffer;
+
+void get_pwm(float pwm[], float theta[], float offset[]){
+  for(int i = 0; i < N_JOINTS; i++){
+    pwm[i] = map(theta[i] + offset[i], -90, 90, SERVOMIN, SERVOMAX);
+  }
+}
+
+void write_position(float pwm[]){
+  for(int i = 0; i < N_JOINTS; i++)
+    driver.setPWM(i, 0, pwm[i]);
+}
+
+void execute_traj(float pwm[], float traj[N_POINTS][N_JOINTS], float offset[]){
+  for(int i = 0; i < N_POINTS; i++){
+      for(int j = 0; j < N_JOINTS; j++)
+        pwm[j] = map(traj[i][j] + offset[j], -90, 90, SERVOMIN, SERVOMAX);
+      write_position(pwm);
+      delay(1000/F_POSITIONS);
+  }
+}
+
+void homing(){
+  get_pwm(pwm, home_position, offset);
+  write_position(pwm);
+}
           
 void setup() {
   Serial.begin(9600);
@@ -28,38 +54,15 @@ void setup() {
   driver.setOscillatorFrequency(27000000);
   driver.setPWMFreq(SERVO_FREQ);
   delay(10);
-  pwm0 = map(-1.0485 + J_0_OFFSET, 0, 180, SERVOMIN0, SERVOMAX0);
-  pwm1 = map(25.6169 + J_1_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-  pwm2 = map(-58.4417 + J_2_OFFSET, 0, 180, SERVOMIN0, SERVOMAX0);
-  pwm3 = map(-1.9366 + J_3_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-  pwm4 = map(-32.8362 + J_4_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-  pwm5 = map(1.6272 + J_5_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-  driver.setPWM(0, 0, pwm0);
-  driver.setPWM(1, 0, pwm1);
-  driver.setPWM(2, 0, pwm2);
-  driver.setPWM(3, 0, pwm3);
-  driver.setPWM(4, 0, pwm4);
-  driver.setPWM(5, 0, pwm5);
+
+  homing();
+  delay(500);
 }
 
 void loop() {
   if(Serial.available()){
     Serial.readString();
-    for(int i = 0; i < 300; i++){
-      pwm0 = map(traj[i][0] + J_0_OFFSET, 0, 180, SERVOMIN0, SERVOMAX0);
-      pwm1 = map(traj[i][1] + J_1_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-      pwm2 = map(traj[i][2] + J_2_OFFSET, 0, 180, SERVOMIN0, SERVOMAX0);
-      pwm3 = map(traj[i][3] + J_3_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-      pwm4 = map(traj[i][4] + J_4_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-      pwm5 = map(traj[i][5] + J_5_OFFSET, 0, 180, SERVOMIN1, SERVOMAX1);
-
-      driver.setPWM(0, 0, pwm0);
-      driver.setPWM(1, 0, pwm1);
-      driver.setPWM(2, 0, pwm2);
-      driver.setPWM(3, 0, pwm3);
-      driver.setPWM(4, 0, pwm4);
-      driver.setPWM(5, 0, pwm5);
-      delay(25);
-    }
+    execute_traj(pwm, traj, offset);
   }
+  homing();
 }
