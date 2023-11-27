@@ -2,7 +2,6 @@ import cv2
 import os
 import time
 import tkinter as tk
-import keyboard
 
 from grid import find_game_grid, print_board, find_color
 from setting import X_SYM, O_SYM

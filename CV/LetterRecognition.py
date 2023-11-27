@@ -1,13 +1,8 @@
-import os
 import sys
-
-import cv2
-from tensorflow import keras
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
-from keras.preprocessing.image import load_img, img_to_array
-from keras.metrics import top_k_categorical_accuracy,categorical_accuracy
+from keras.metrics import top_k_categorical_accuracy
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 
