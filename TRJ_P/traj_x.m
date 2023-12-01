@@ -8,26 +8,20 @@ altodestra_x = centro_x + [-r -r 0];
 bassodestra_x = centro_x + [-r r 0];
 %viapoint_bdx_adx=(bassodestra_x +altodestra_x)/2 +[0,0,0.07];
 
-t_tr=tempo_traj/12;
+t_tr = tempo_traj/12;
 trasl_alto = [0,0,0.05];
-
 
  path_descr = struct("inizio", [start_pos; altosin_x+trasl_alto; altosin_x; bassodestra_x; bassodestra_x+trasl_alto; altodestra_x+trasl_alto;altodestra_x; bassosin_x; bassosin_x+trasl_alto;], ...
                 "fine", [altosin_x+trasl_alto; altosin_x; bassodestra_x; bassodestra_x+trasl_alto; altodestra_x+trasl_alto; altodestra_x; bassosin_x; bassosin_x+trasl_alto; start_pos;]);
 
 [s_1,s_1_dot,s_1_dotdot] = trap_profile(0, t_tr,   f_s, start_pos, altosin_x+trasl_alto, tempo_traj, "rect");
-[s_2,s_2_dot,s_2_dotdot] = trap_profile(t_tr, 2*t_tr, f_s, altosin_x+trasl_alto, altosin_x, tempo_traj, "via_point_inizio");
-% [s_2_5,s_2_5_dot,s_2_5_dotdot] = trap_profile(2*t_tr, 2.5*t_tr, f_s, altosin_x, altosin_x,tempo_traj, "rect");
-[s_3,s_3_dot,s_3_dotdot] = trap_profile(2*t_tr, 4*t_tr, f_s, altosin_x, bassodestra_x,tempo_traj, "via_point_fine");
-% [s_3_5,s_3_5_dot,s_3_5_dotdot] = trap_profile(3.5*t_tr, 4*t_tr, f_s, bassodestra_x, bassodestra_x,tempo_traj, "rect");
-%[s_4,s_4_dot,s_4_dotdot] = trap_profile(4*t_tr, 5*t_tr, f_s, bassodestra_x, viapoint_bdx_adx,tempo_traj, "via_point_inizio");
-[s_4,s_4_dot,s_4_dotdot] = trap_profile(4*t_tr, 5*t_tr, f_s, bassodestra_x,  bassodestra_x+trasl_alto,tempo_traj, "rect");
+[s_2,s_2_dot,s_2_dotdot] = trap_profile(t_tr, 2*t_tr, f_s, altosin_x+trasl_alto, altosin_x, tempo_traj, "rect");
+[s_3,s_3_dot,s_3_dotdot] = trap_profile(2*t_tr, 4*t_tr, f_s, altosin_x, bassodestra_x,tempo_traj, "via_point_inizio");
+[s_4,s_4_dot,s_4_dotdot] = trap_profile(4*t_tr, 5*t_tr, f_s, bassodestra_x,  bassodestra_x+trasl_alto,tempo_traj, "via_point_fine");
 [s_5,s_5_dot,s_5_dotdot] = trap_profile(5*t_tr ,6*t_tr, f_s,bassodestra_x+trasl_alto, altodestra_x+trasl_alto,tempo_traj, "rect");
-% [s_6_5,s_6_5_dot,s_6_5_dotdot] = trap_profile(6*t_tr, 6.5*t_tr, f_s, altodestra_x, altodestra_x,tempo_traj, "rect");
-[s_6,s_6_dot,s_6_dotdot] = trap_profile(7*t_tr, 8*t_tr, f_s, altodestra_x+trasl_alto, altodestra_x,tempo_traj, "via_point_inizio");
-[s_7,s_7_dot,s_7_dotdot] = trap_profile(8*t_tr, 10*t_tr, f_s, altodestra_x, bassosin_x,tempo_traj, "via_point_fine");
-% [s_7_5,s_7_5_dot,s_7_5_dotdot] = trap_profile(7.5*t_tr, 8*t_tr, f_s, bassosin_x, bassosin_x,tempo_traj, "rect");
-[s_8,s_8_dot,s_8_dotdot] = trap_profile(10*t_tr, 11*t_tr, f_s, bassosin_x, bassosin_x+trasl_alto,tempo_traj, "rect");
+[s_6,s_6_dot,s_6_dotdot] = trap_profile(7*t_tr, 8*t_tr, f_s, altodestra_x+trasl_alto, altodestra_x,tempo_traj, "rect");
+[s_7,s_7_dot,s_7_dotdot] = trap_profile(8*t_tr, 10*t_tr, f_s, altodestra_x, bassosin_x,tempo_traj, "via_point_inizio");
+[s_8,s_8_dot,s_8_dotdot] = trap_profile(10*t_tr, 11*t_tr, f_s, bassosin_x, bassosin_x+trasl_alto,tempo_traj, "via_point_fine");
 [s_9,s_9_dot,s_9_dotdot] = trap_profile(11*t_tr ,12*t_tr ,  f_s, bassosin_x+trasl_alto, start_pos, tempo_traj, "rect");
 
 S = [s_1; s_2; s_3; s_4; s_5; s_6; s_7; s_8; s_9];
