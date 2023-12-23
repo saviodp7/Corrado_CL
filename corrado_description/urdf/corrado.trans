@@ -1,23 +1,10 @@
 <?xml version="1.0" ?>
 <robot name="corrado" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<xacro:arg name="robot_name" default="corrado"/>
-<xacro:arg name="hardware_interface" default="PositionJointInterface"/> 
-
-<transmission name="joint_1_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
-  <type>transmission_interface/SimpleTransmission</type>
-  <joint name="joint_1">
-    <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
-  </joint>
-  <actuator name="joint_1_actr">
-    <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
-    <mechanicalReduction>1</mechanicalReduction>
-  </actuator>
-</transmission>
+<xacro:arg name="hardware_interface" default="PositionJointInterface"/>
 
 <transmission name="joint_2_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
+  <robotNamespace>/corrado</robotNamespace>
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="joint_2">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
@@ -29,7 +16,7 @@
 </transmission>
 
 <transmission name="joint_3_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
+  <robotNamespace>/corrado</robotNamespace>
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="joint_3">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
@@ -41,7 +28,7 @@
 </transmission>
 
 <transmission name="joint_4_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
+  <robotNamespace>/corrado</robotNamespace>
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="joint_4">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
@@ -53,7 +40,7 @@
 </transmission>
 
 <transmission name="joint_5_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
+  <robotNamespace>/corrado</robotNamespace>
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="joint_5">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
@@ -65,12 +52,24 @@
 </transmission>
 
 <transmission name="joint_6_tran">
-  <robotNamespace>/$(arg robot_name)</robotNamespace>
+  <robotNamespace>/corrado</robotNamespace>
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="joint_6">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
   </joint>
   <actuator name="joint_6_actr">
+    <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="joint_1_tran">
+  <robotNamespace>/corrado</robotNamespace>
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="joint_1">
+    <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+  </joint>
+  <actuator name="joint_1_actr">
     <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>

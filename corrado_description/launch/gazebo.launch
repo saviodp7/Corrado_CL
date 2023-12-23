@@ -1,17 +1,22 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <launch>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
-  </include>
+<!-- Loads the environment in Gazebo. -->
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="paused" value="false"/>
+  <arg name="use_sim_time" value="true"/>
+  <arg name="gui" value="true"/>
+  <arg name="headless" value="false"/>
+  <arg name="debug" value="false"/>
+</include>
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find corrado_description)/urdf/corrado.xacro"/>
+<!-- Load the URDF with the given hardware interface into the ROS Parameter Server -->
+<param name="robot_description" command="$(find xacro)/xacro $(find corrado_description)/urdf/corrado.xacro"/>
 
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
-    args="-urdf -model arm -param robot_description"/> 
+<!-- Run a python script to send a service call to gazebo_ros to spawn a URDF robot -->
+<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-param robot_description -urdf -model corrado"/>
+
+<!-- Run a python script to send a service call to gazebo_ros to spawn a URDF robot -->
+<include file="$(find corrado_description)/launch/controller.launch"/>
 
 </launch>

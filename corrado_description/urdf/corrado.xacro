@@ -5,11 +5,17 @@
 <xacro:include filename="$(find corrado_description)/urdf/corrado.trans" />
 <xacro:include filename="$(find corrado_description)/urdf/corrado.gazebo" />
 
+<link name="world"/>
+<joint name="world_to_base_link=" type="fixed">
+  <parent link="world"/>
+  <child link="base_link"/>
+</joint>
+
 <link name="base_link">
   <inertial>
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-    <mass value="0.25589656457731824"/>
-    <inertia ixx="0.000372" iyy="0.000376" izz="0.000587" ixy="-2e-06" iyz="2e-06" ixz="-1e-06"/>
+    <origin xyz="0.0005712035965292986 0.002149814167861342 0.028721711216282832" rpy="0 0 0"/>
+    <mass value="0.25589656457744414"/>
+    <inertia ixx="0.000371" iyy="0.000377" izz="0.000587" ixy="-0.0" iyz="-2e-06" ixz="-0.0"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -22,46 +28,25 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="link_1">
-  <inertial>
-    <origin xyz="0.00352082327625453 -0.0018186197347480016 0.0259398092692686" rpy="0 0 0"/>
-    <mass value="0.21815052421722608"/>
-    <inertia ixx="0.000187" iyy="0.000231" izz="0.000255" ixy="-2.5e-05" iyz="-9e-06" ixz="-1.2e-05"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.0001 -0.0005 -0.05587" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://corrado_description/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="silver"/>
-  </visual>
-  <collision>
-    <origin xyz="0.0001 -0.0005 -0.05587" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://corrado_description/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
 <link name="link_2">
   <inertial>
-    <origin xyz="0.0001846008097610534 -0.014049470109742461 0.042991728047063485" rpy="0 0 0"/>
+    <origin xyz="-0.004874091051137862 -2.9551226064308822e-05 0.044966414454146716" rpy="0 0 0"/>
     <mass value="0.06723503488021657"/>
-    <inertia ixx="0.00015" iyy="0.000136" izz="2.1e-05" ixy="5e-06" iyz="3.7e-05" ixz="-1.1e-05"/>
+    <inertia ixx="0.000152" iyy="0.000146" izz="9e-06" ixy="0.0" iyz="0.0" ixz="3e-06"/>
   </inertial>
   <visual>
-    <origin xyz="-0.016576 -0.026157 -0.11608" rpy="0 0 0"/>
+    <origin xyz="-0.025463 -0.019466 -0.110163" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.016576 -0.026157 -0.11608" rpy="0 0 0"/>
+    <origin xyz="-0.025463 -0.019466 -0.110163" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -70,19 +55,19 @@
 
 <link name="link_3">
   <inertial>
-    <origin xyz="-0.007224003713249013 -0.020580489284341474 0.03421444612653318" rpy="0 0 0"/>
+    <origin xyz="-0.014136202472590852 -0.005878094538857825 0.03757703194506734" rpy="0 0 0"/>
     <mass value="0.07088669177132391"/>
-    <inertia ixx="5.2e-05" iyy="4e-05" izz="4.4e-05" ixy="3e-06" iyz="3e-06" ixz="1e-06"/>
+    <inertia ixx="5.3e-05" iyy="4.1e-05" izz="4.2e-05" ixy="-1e-06" iyz="3e-06" ixz="2e-06"/>
   </inertial>
   <visual>
-    <origin xyz="-0.018006 0.010969 -0.230813" rpy="0 0 0"/>
+    <origin xyz="-0.013463 -0.019393 -0.230163" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_3.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.018006 0.010969 -0.230813" rpy="0 0 0"/>
+    <origin xyz="-0.013463 -0.019393 -0.230163" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_3.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -91,19 +76,19 @@
 
 <link name="link_4">
   <inertial>
-    <origin xyz="-0.01659573639655563 0.05258774665278596 0.019176336133320537" rpy="0 0 0"/>
+    <origin xyz="0.003416086309992707 0.0582404461214805 0.0022445507342216398" rpy="0 0 0"/>
     <mass value="0.16607850247781106"/>
-    <inertia ixx="0.000297" iyy="8.1e-05" izz="0.000315" ixy="4.1e-05" iyz="-6.8e-05" ixz="1.4e-05"/>
+    <inertia ixx="0.000297" iyy="6.3e-05" izz="0.000334" ixy="-4.4e-05" iyz="8e-06" ixz="1e-06"/>
   </inertial>
   <visual>
-    <origin xyz="-0.004135 0.009249 -0.277401" rpy="0 0 0"/>
+    <origin xyz="-0.001141 -0.039318 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_4.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.004135 0.009249 -0.277401" rpy="0 0 0"/>
+    <origin xyz="-0.001141 -0.039318 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_4.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -112,19 +97,19 @@
 
 <link name="link_5">
   <inertial>
-    <origin xyz="-0.027690434752053836 0.0032080443245588453 0.004011085602064979" rpy="0 0 0"/>
+    <origin xyz="-0.024686331535258694 0.013554211028481727 5.171006341153639e-05" rpy="0 0 0"/>
     <mass value="0.033622009165911515"/>
-    <inertia ixx="1.5e-05" iyy="1.1e-05" izz="1.8e-05" ixy="2e-06" iyz="-2e-06" ixz="1e-06"/>
+    <inertia ixx="1.6e-05" iyy="1e-05" izz="1.9e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.025004 -0.133398 -0.321307" rpy="0 0 0"/>
+    <origin xyz="-0.025224 -0.189468 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_5.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.025004 -0.133398 -0.321307" rpy="0 0 0"/>
+    <origin xyz="-0.025224 -0.189468 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/link_5.stl" scale="0.001 0.001 0.001"/>
     </geometry>
@@ -133,71 +118,92 @@
 
 <link name="end_effector">
   <inertial>
-    <origin xyz="-0.0065736845500056346 0.016754005066701466 0.005502828670762017" rpy="0 0 0"/>
+    <origin xyz="-0.00011261190076495358 0.018819113943749716 1.3838233003937717e-07" rpy="0 0 0"/>
     <mass value="0.14259404167762188"/>
-    <inertia ixx="5e-05" iyy="3e-05" izz="5.7e-05" ixy="9e-06" iyz="-1e-05" ixz="4e-06"/>
+    <inertia ixx="5.3e-05" iyy="2.3e-05" izz="6e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
   </inertial>
   <visual>
-    <origin xyz="0.061559 -0.158102 -0.332372" rpy="0 0 0"/>
+    <origin xyz="7e-06 -0.227315 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/end_effector.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.061559 -0.158102 -0.332372" rpy="0 0 0"/>
+    <origin xyz="7e-06 -0.227315 -0.272789" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://corrado_description/meshes/end_effector.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
-<joint name="joint_1" type="revolute">
-  <origin xyz="-0.0001 0.0005 0.05587" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="link_1"/>
-  <axis xyz="-0.001737 -0.000686 0.999998"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
-</joint>
+<link name="link_1">
+  <inertial>
+    <origin xyz="0.0026809363659868832 -0.002961142036595421 0.025934894578316964" rpy="0 0 0"/>
+    <mass value="0.21815052421722608"/>
+    <inertia ixx="0.000176" iyy="0.000242" izz="0.000255" ixy="-4e-06" iyz="-4e-06" ixz="-1.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.000572 -0.00151 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://corrado_description/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.000572 -0.00151 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://corrado_description/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
 <joint name="joint_2" type="revolute">
-  <origin xyz="0.016676 0.025657 0.06021" rpy="0 0 0"/>
+  <origin xyz="0.024891 0.017956 0.060163" rpy="0 0 0"/>
   <parent link="link_1"/>
   <child link="link_2"/>
-  <axis xyz="-0.931054 -0.364876 -0.001868"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
+  <axis xyz="-0.999981 -0.006108 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
 </joint>
 
 <joint name="joint_3" type="revolute">
-  <origin xyz="0.00143 -0.037126 0.114733" rpy="0 0 0"/>
+  <origin xyz="-0.012 -7.3e-05 0.12" rpy="0 0 0"/>
   <parent link="link_2"/>
   <child link="link_3"/>
-  <axis xyz="-0.931054 -0.364876 -0.001868"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
+  <axis xyz="-0.999981 -0.006108 -0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
 </joint>
 
 <joint name="joint_4" type="revolute">
-  <origin xyz="-0.013871 0.00172 0.046588" rpy="0 0 0"/>
+  <origin xyz="-0.012322 0.019925 0.042626" rpy="0 0 0"/>
   <parent link="link_3"/>
   <child link="link_4"/>
-  <axis xyz="-0.349438 0.890166 0.292399"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
+  <axis xyz="-0.006108 0.999981 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
 </joint>
 
 <joint name="joint_5" type="revolute">
-  <origin xyz="-0.029139 0.142647 0.043906" rpy="0 0 0"/>
+  <origin xyz="0.024083 0.15015 0.0" rpy="0 0 0"/>
   <parent link="link_4"/>
   <child link="link_5"/>
-  <axis xyz="0.931054 0.364876 0.001868"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
+  <axis xyz="0.999981 0.006108 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
 </joint>
 
 <joint name="joint_6" type="revolute">
-  <origin xyz="-0.036555 0.024704 0.011065" rpy="0 0 0"/>
+  <origin xyz="-0.025231 0.037847 0.0" rpy="0 0 0"/>
   <parent link="link_5"/>
   <child link="end_effector"/>
-  <axis xyz="-0.349438 0.890166 0.292399"/>
-  <limit effort="14" velocity="0.5" lower="-1.57" upper="1.57"/>
+  <axis xyz="-0.006108 0.999981 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
+</joint>
+
+<joint name="joint_1" type="revolute">
+  <origin xyz="0.000572 0.00151 0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link_1"/>
+  <axis xyz="-0.0 -0.0 1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="6.28"/>
 </joint>
 
 </robot>
